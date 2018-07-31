@@ -56,8 +56,6 @@ class Solution:
         if len(res) == level:
             res.append([])
         res[level].append(node.val)
-        if node.left:
-            self.dfs(node.left, level + 1, res)
-        if node.right:
-            self.dfs(node.right, level + 1, res)
+        self.dfs(node.left, level + 1, res)
+        self.dfs(node.right, level + 1, res)
         
