@@ -35,9 +35,10 @@ class Solution:
         :type banned: List[str]
         :rtype: str
         """
+        """
         import re
         worddict = {}
-        wordlist = re.split(r'[^a-zA-Z]{1,2}', paragraph.lower())
+        wordlist = re.findall(r'\w+', paragraph.lower())
         for i in wordlist:
             if i not in worddict:
                 worddict[i] = 1
@@ -47,4 +48,17 @@ class Solution:
         for i in range(len(freqlist) - 1, -1, -1):
             if freqlist[i] not in banned:
                 return freqlist[i]
-                
+        """
+        import re
+        bans = set(banned)
+        worddict = {}
+        wordlist = re.findall(r'\w+', paragraph.lower())
+        print(wordlist)
+        for i in wordlist:
+            if i not in bans:
+                if i not in worddict:
+                    worddict[i] = 1
+                else:
+                    worddict[i] += 1
+        return max(worddict, key = lambda x: worddict[x])
+        
