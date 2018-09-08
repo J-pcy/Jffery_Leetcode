@@ -50,6 +50,7 @@ class Solution:
                 continue
             self.dfs(nums, i + 1, tmp + [nums[i]], res)
         """
+        """
         res = [[]]
         nums.sort()
         for i in range(len(nums)):
@@ -58,5 +59,10 @@ class Solution:
                 size = len(res)
             for j in range(len(res) - size, len(res)):
                 res.append(res[j] + [nums[i]])
+        return res
+        """
+        res = [[]]
+        for num in sorted(nums):
+            res += [item + [num] for item in res if item + [num] not in res]
         return res
         

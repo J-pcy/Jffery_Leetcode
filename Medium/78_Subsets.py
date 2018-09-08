@@ -49,6 +49,7 @@ class Solution:
         self.dfs(nums, index + 1, tmp, res)
         self.dfs(nums, index + 1, tmp + [nums[index]], res)
         """
+        """
         res = []
         queue = [[]]
         nums.sort()
@@ -60,5 +61,10 @@ class Solution:
                     tmp.append(nums[i])
                     queue.append(tmp[:])
                     tmp.pop()
+        return res
+        """
+        res = [[]]
+        for num in nums:
+            res += [item + [num] for item in res]
         return res
         

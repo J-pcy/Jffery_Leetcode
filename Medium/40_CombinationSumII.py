@@ -34,6 +34,7 @@ class Solution:
         :type target: int
         :rtype: List[List[int]]
         """
+        """
         self.res = []
         candidates.sort()
         self.dfs(candidates, [], target, 0)
@@ -48,4 +49,20 @@ class Solution:
             if i > index and candidates[i] == candidates[i - 1]:
                 continue
             self.dfs(candidates, tmp + [candidates[i]], target - candidates[i], i + 1)
-            
+        """
+        res = []
+        candidates.sort()
+        self.dfs(candidates, target, 0, [], res)
+        return res
+    
+    def dfs(self, candidates, target, start, tmp, res):
+        if target == 0:
+            res.append(tmp[:])
+            return
+        for i in range(start, len(candidates)):
+            if i > start and candidates[i] == candidates[i - 1]:
+                continue
+            if candidates[i] > target:
+                break
+            self.dfs(candidates, target - candidates[i], i + 1, tmp + [candidates[i]], res)
+        
