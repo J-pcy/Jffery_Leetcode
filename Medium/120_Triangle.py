@@ -39,6 +39,7 @@ class Solution:
             pathsum.append(tmp)
         return min(pathsum[-1])
         """
+        """
         if len(triangle) == 0 or len(triangle[0]) == 0:
             return 0
         pathsum = [x for x in triangle[-1]]
@@ -46,4 +47,16 @@ class Solution:
             for j in range(len(triangle[i])):
                 pathsum[j] = min(pathsum[j], pathsum[j + 1]) + triangle[i][j]
         return pathsum[0]
+        """
+        if len(triangle) == 0 or len(triangle[0]) == 0:
+            return 0
+        dp = [sys.maxsize] * len(triangle)
+        dp[0] = triangle[0][0]
+        for i in range(1, len(triangle)):
+            for j in range(len(triangle[i]) - 1, -1, -1):
+                if j == 0:
+                    dp[j] = dp[j] + triangle[i][j]
+                else:
+                    dp[j] = min(dp[j], dp[j - 1]) + triangle[i][j]
+        return min(dp)
         
